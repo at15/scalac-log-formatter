@@ -24,6 +24,7 @@ class LogParser {
         //        println(oneLine)
         warnType = Warning.getWarnType(oneLine)
         warnType match {
+          // TODO:use yield
           case "dead code" => {
             warnings += new DeadCode(lines(i), lines(i + 1), lines(i + 2))
             i += 2

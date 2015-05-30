@@ -7,4 +7,8 @@ class File {
   def addWarning(warn: warning.Warning) = {
 
   }
+
+  def folder() :String = {
+    "this is my folder"
+  }
 }
