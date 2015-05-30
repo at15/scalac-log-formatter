@@ -12,6 +12,8 @@ object Log {
     val source = Source.fromFile(logFile, "UTF-8") // though the log is GBK, but only english, so
     val parser = new LogParser
     parser.parse(source)
+    println(parser.warnings)
     source.close()
+
   }
 }
