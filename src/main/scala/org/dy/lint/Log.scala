@@ -1,5 +1,7 @@
 package org.dy.lint
 
+import org.dy.lint.format.Plain
+
 import io.Source
 import fastparse._
 
@@ -11,8 +13,12 @@ object Log {
     val logFile = "logs/linter-me-package.log"
     val source = Source.fromFile(logFile, "UTF-8") // though the log is GBK, but only english, so
     val parser = new LogParser
+    val project = new Project("Test")
     parser.parse(source)
-    println(parser.warnings)
+    for(warn <- parser.warnings){
+      project.addWarning(warn)
+    }
+    println(project.output(new Plain))
     source.close()
 
   }

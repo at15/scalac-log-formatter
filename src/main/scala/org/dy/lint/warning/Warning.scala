@@ -9,8 +9,8 @@ abstract class Warning(val l1:String,val l2:String,val l3:String) {
   val reg = "\\[warn]\\s(.*.scala):(\\d*):\\s(.*)".r
   // TODO: deal with l2
   val reg(fileName,lineNumber,msg) = l1
-  // NOTE:this is colNumber in fact
-  val pos = l3.indexOf("^") - "[warn] ".length
+  val code = l2.substring(7)
+  val colNumber = l3.indexOf("^") - "[warn] ".length
 }
 
 object Warning {

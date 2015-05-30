@@ -34,7 +34,7 @@ class LogParser {
             i += 2
           }
           case "useless" => {
-            println("useless warning" + lines(i))
+//            println("useless warning" + lines(i))
           }
         }
       }
