@@ -7,4 +7,8 @@ import org.dy.lint.warning.Warning
 abstract class Format {
   def transform(s:String): String
   def transform(w:Warning): String
+  def fileSeparatorStart(fileName:String): String
+  def fileSeparatorEnd(fileName:String): String
+  def outputHeader() :String = ""
+  def outputFooter() :String = ""
 }

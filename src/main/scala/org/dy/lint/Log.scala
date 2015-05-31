@@ -1,8 +1,9 @@
 package org.dy.lint
 
-import org.dy.lint.format.Plain
+import org.dy.lint.format.{Html, Plain}
 
 import io.Source
+import java.io.PrintWriter
 import fastparse._
 
 
@@ -18,8 +19,14 @@ object Log {
     for(warn <- parser.warnings){
       project.addWarning(warn)
     }
-    println(project.output(new Plain))
+//    println(project.output(new Plain))
+    val txt = new PrintWriter("commented.txt");
+    val html = new PrintWriter("highlight.html");
+    txt.print(project.output(new Plain))
+    html.print(project.output(new Html))
     source.close()
+    txt.close()
+    html.close()
 
   }
 }

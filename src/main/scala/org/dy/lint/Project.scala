@@ -21,12 +21,12 @@ class Project(val name: String) {
   }
 
   def output(f:Format): String = {
-    var s = ""
+    var s = f.outputHeader()
     for(file <- files){
-      s += "Start of File: " + file.fileName + "\n"
+      s += f.fileSeparatorStart(file.fileName)
       s += file.output(f)
-      s += "End of File: " + file.fileName + "\n\n"
+      s += f.fileSeparatorEnd(file.fileName)
     }
-    s
+    s + f.outputFooter()
   }
 }

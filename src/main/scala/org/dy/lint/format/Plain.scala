@@ -11,4 +11,11 @@ class Plain extends Format {
     case w: DeadCode => w.code + " // Dead Code: " + w.msg
     case w: Unused => w.code + " // Unused: " + w.msg
   }
+  def fileSeparatorStart(fileName:String) = {
+    ">>>Start:" + fileName + "\n"
+  }
+
+  def fileSeparatorEnd(fileName:String) = {
+    "===End:" + fileName + "\n"
+  }
 }
