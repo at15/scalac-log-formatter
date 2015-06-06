@@ -10,8 +10,13 @@ import fastparse._
 object Log {
   def main(args: Array[String]) = {
     println("Let's parse log oh yeah!")
+    println("this is args" + args)
+    for(a <- args){
+      println(a)
+    }
     // open the log file
-    val logFile = "logs/linter-me-package.log"
+    val logFile = "logs/scala-lang-package.log"
+    // TODO: need to be gbk in windows
     val source = Source.fromFile(logFile, "UTF-8") // though the log is GBK, but only english, so
     val parser = new LogParser
     val project = new Project("Test")
