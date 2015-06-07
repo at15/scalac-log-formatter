@@ -33,9 +33,9 @@ class File(val fileName: String, val encoding: String) extends FileBase {
       if (hasWarning((lineNumber))) {
         s += f.transform(warnings(lineNumber))
       } else {
-        s += f.transform(line)
+        //        s += f.transform(line)
       }
-      s += "\n"
+//      s += "\r\n"
     }
     s
   }

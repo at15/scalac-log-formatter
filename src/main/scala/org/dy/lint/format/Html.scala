@@ -1,5 +1,6 @@
 package org.dy.lint.format
 
+import org.dy.lint.File
 import org.dy.lint.warning.{UnusedParam, Unused, DeadCode, Warning}
 
 /**
@@ -10,13 +11,20 @@ class Html extends Format {
   def transform(s: String): String = "<pre>" + s + "</pre>"
 
   def transform(w: Warning): String = w match {
-    case w: DeadCode => render(w.code, "dead-code", w.msg)
-    case w: Unused => render(w.code, "unused", w.msg)
-    case w: UnusedParam => render(w.code, "unused-param", w.msg)
+    case w: DeadCode => render(w.code,w.lineNumber, "dead-code", w.msg)
+    case w: Unused => render(w.code,w.lineNumber, "unused", w.msg)
+    case w: UnusedParam => render(w.code, w.lineNumber, "unused-param", w.msg)
   }
 
-  def fileSeparatorStart(fileName: String) = {
-    "<p><strong>" + fileName + "</strong></p>"
+  def fileSeparatorStart(file: File) = {
+    "<p><strong>" +
+      file.fileName +
+      "</strong></p>" +
+      "<p><ol>" +
+      "<li>" + file.tp1Count + "</li>" +
+      "<li>" + file.tp2Count + "</li>" +
+      "<li>" + file.tp3Count + "</li>" +
+      "</ol></p>\r\n"
   }
 
   def fileSeparatorEnd(fileName: String) = {
@@ -26,7 +34,7 @@ class Html extends Format {
   override def outputHeader() = {
     "<html>" +
       "<head>" +
-      "<style>.dead-code{background-color:lightgrey;} .unused{background-color:lightyellow;} .unused-param{background-color:red}</style>" +
+      "<style>.dead-code{background-color:lightgrey;} .unused{background-color:lightyellow;} .unused-param{background-color:#FF8161}</style>" +
       "<head><body>"
   }
 
@@ -34,7 +42,7 @@ class Html extends Format {
     "</body></html>"
   }
 
-  private def render(code: String, htmlClass: String, msg: String): String = {
-    "<pre class=\"" + htmlClass + "\" title=\"" + msg + "\">" + code + "</pre>"
+  private def render(code: String, lineNumber:Int,htmlClass: String, msg: String): String = {
+    "<pre class=\"" + htmlClass + "\" title=\"" + msg + "\">" + lineNumber + ": " + code + "</pre>\n"
   }
 }

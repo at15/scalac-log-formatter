@@ -23,7 +23,7 @@ class Project(val projectName: String, val encoding: String, val dist: String) e
   def output(f: Format): String = {
     var s = f.outputHeader()
     for (file <- files) {
-      s += f.fileSeparatorStart(file.fileName)
+      s += f.fileSeparatorStart(file)
       s += file.output(f)
       s += f.fileSeparatorEnd(file.fileName)
     }

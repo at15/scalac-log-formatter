@@ -1,7 +1,7 @@
 package org.dy.lint.format
 
 import org.dy.lint.warning.{UnusedParam, Unused, DeadCode, Warning}
-import org.dy.lint.Project
+import org.dy.lint.{File, Project}
 
 // plain txt format
 //class Plain(val project: Project) extends Format {
@@ -14,8 +14,8 @@ class Plain extends Format {
     case w: UnusedParam => w.code + w.msg
   }
 
-  def fileSeparatorStart(fileName: String) = {
-    ">>>Start:" + fileName + "\n"
+  def fileSeparatorStart(file:File) = {
+    ">>>Start:" + file.fileName + "\n"
   }
 
   def fileSeparatorEnd(fileName: String) = {
