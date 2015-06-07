@@ -6,16 +6,18 @@ import org.dy.lint.Project
 // plain txt format
 //class Plain(val project: Project) extends Format {
 class Plain extends Format {
-  def transform(s:String):String = s
-  def transform(w:Warning):String = w match {
+  def transform(s: String): String = s
+
+  def transform(w: Warning): String = w match {
     case w: DeadCode => w.code + " // Dead Code: " + w.msg
     case w: Unused => w.code + " // Unused: " + w.msg
   }
-  def fileSeparatorStart(fileName:String) = {
+
+  def fileSeparatorStart(fileName: String) = {
     ">>>Start:" + fileName + "\n"
   }
 
-  def fileSeparatorEnd(fileName:String) = {
+  def fileSeparatorEnd(fileName: String) = {
     "===End:" + fileName + "\n"
   }
 }

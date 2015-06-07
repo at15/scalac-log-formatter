@@ -20,9 +20,9 @@ class Project(val name: String) {
     files(i).addWarning(warn)
   }
 
-  def output(f:Format): String = {
+  def output(f: Format): String = {
     var s = f.outputHeader()
-    for(file <- files){
+    for (file <- files) {
       s += f.fileSeparatorStart(file.fileName)
       s += file.output(f)
       s += f.fileSeparatorEnd(file.fileName)
