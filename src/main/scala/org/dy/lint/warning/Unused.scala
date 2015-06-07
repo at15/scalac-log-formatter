@@ -1,7 +1,7 @@
 package org.dy.lint.warning
 
 class Unused(fileName: String, lineNumber: Int, msg: String) extends Warning(fileName, lineNumber, msg) {
-  override val dctype = 2
+  override val dctype = Type.tp2
 }
 
 object Unused {

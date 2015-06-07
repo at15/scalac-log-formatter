@@ -7,16 +7,16 @@ import io.Source
 import collection.mutable.ArrayBuffer
 import collection.mutable.HashMap
 
-class File(val fileName: String) {
-  //  val warnings = ArrayBuffer[Warning]()
+class File(val fileName: String, val encoding: String) extends FileBase {
   val warnings = HashMap[Int, Warning]()
   val warningLines = ArrayBuffer[Int]()
 
-  def addWarning(warn: Warning): Unit = {
+  override def addWarning(warn: Warning): Unit = {
     // TODO: order by line number
     warnings(warn.lineNumber.toInt) = warn
     warningLines += warn.lineNumber.toInt
-    () // for discarded non-Unit value warning
+    super.addWarning(warn)
+    //    () // for discarded non-Unit value warning
   }
 
   private def hasWarning(lineNumber: Int): Boolean = {
@@ -24,8 +24,7 @@ class File(val fileName: String) {
   }
 
   def output(f: Format): String = {
-    // TODO:this should also specify in commandline
-    val src = Source.fromFile(fileName, "UTF-8").getLines()
+    val src = Source.fromFile(fileName, encoding).getLines()
     var lineNumber = 0
     var s = ""
     for (line <- src) {
