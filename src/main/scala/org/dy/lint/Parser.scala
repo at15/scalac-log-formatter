@@ -16,6 +16,7 @@ class Parser {
 
     while (i < lines.length) {
       oneLine = lines(i)
+      // TODO: use warning without sbt won't have the [warn] prefix
       if (oneLine.startsWith("[warn]")) {
         Warning.getWarn(oneLine) match {
           case _: NoWarning => // do nothing

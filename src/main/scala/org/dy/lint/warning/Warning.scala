@@ -19,6 +19,7 @@ object Warning {
     line match {
       case DeadCode.pattern(f, l, m) => new DeadCode(f, l.toInt, m)
       case Unused.pattern(f, l, m) => new Unused(f, l.toInt, m)
+      case UnusedParam.pattern(f,l,m) => new UnusedParam(f,l.toInt,m)
       case _ => new NoWarning
     }
   }

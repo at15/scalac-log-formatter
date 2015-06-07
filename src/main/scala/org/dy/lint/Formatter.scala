@@ -8,8 +8,9 @@ import org.dy.lint.format.{Html, Plain}
 object Formatter {
 
   def main(args: Array[String]) = {
-    var logFile = ""
-    var encoding = "UTF-8"
+    var logFile = "logs/unused_param.log"
+//    var encoding = "UTF-8"
+    var encoding = "GBK"
     var dist = "dist"
     var projectName = "default"
     for (arg <- args) {
@@ -32,6 +33,7 @@ object Formatter {
     try {
       println("parse log " + logFile + " in " + encoding + " format" + " to " + dist)
       val source = Source.fromFile(logFile, encoding)
+//      val source = Source.fromFile(logFile)
       val parser = new Parser
       val project = new Project(projectName, encoding, dist)
       parser.parse(source)
@@ -55,4 +57,12 @@ object Formatter {
       }
     }
   }
+
+//  def toSource(inputStream:InputStream): scala.io.BufferedSource = {
+//    import java.nio.charset.Charset
+//    import java.nio.charset.CodingErrorAction
+//    val decoder = Charset.forName("UTF-8").newDecoder()
+//    decoder.onMalformedInput(CodingErrorAction.IGNORE)
+//    scala.io.Source.fromInputStream(inputStream)(decoder)
+//  }
 }

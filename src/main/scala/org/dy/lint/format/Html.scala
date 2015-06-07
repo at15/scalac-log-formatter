@@ -1,6 +1,6 @@
 package org.dy.lint.format
 
-import org.dy.lint.warning.{Unused, DeadCode, Warning}
+import org.dy.lint.warning.{UnusedParam, Unused, DeadCode, Warning}
 
 /**
  * Created by Pillar on 2015/5/31.
@@ -12,6 +12,7 @@ class Html extends Format {
   def transform(w: Warning): String = w match {
     case w: DeadCode => render(w.code, "dead-code", w.msg)
     case w: Unused => render(w.code, "unused", w.msg)
+    case w: UnusedParam => render(w.code, "unused-param", w.msg)
   }
 
   def fileSeparatorStart(fileName: String) = {
@@ -25,7 +26,7 @@ class Html extends Format {
   override def outputHeader() = {
     "<html>" +
       "<head>" +
-      "<style>.dead-code{background-color:lightgrey;} .unused{background-color:lightyellow;}</style>" +
+      "<style>.dead-code{background-color:lightgrey;} .unused{background-color:lightyellow;} .unused-param{background-color:red}</style>" +
       "<head><body>"
   }
 

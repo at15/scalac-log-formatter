@@ -1,6 +1,6 @@
 package org.dy.lint.format
 
-import org.dy.lint.warning.{Unused, DeadCode, Warning}
+import org.dy.lint.warning.{UnusedParam, Unused, DeadCode, Warning}
 import org.dy.lint.Project
 
 // plain txt format
@@ -11,6 +11,7 @@ class Plain extends Format {
   def transform(w: Warning): String = w match {
     case w: DeadCode => w.code + " // Dead Code: " + w.msg
     case w: Unused => w.code + " // Unused: " + w.msg
+    case w: UnusedParam => w.code + w.msg
   }
 
   def fileSeparatorStart(fileName: String) = {
