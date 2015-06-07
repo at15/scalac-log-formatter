@@ -1,5 +1,9 @@
 package org.dy.lint.warning
 
-class DeadCode(l1:String,l2:String,l3:String) extends Warning(l1,l2,l3){
+class DeadCode(fileName:String,lineNumber:Int,msg:String) extends Warning(fileName,lineNumber,msg){
 
+}
+
+object DeadCode {
+  val pattern = "\\[warn]\\s(.*.scala):(\\d*):\\s(.*dead code.*)".r
 }
