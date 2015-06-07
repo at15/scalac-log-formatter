@@ -24,8 +24,8 @@ class File(val fileName: String, val encoding: String) extends FileBase {
   }
 
   def output(f: Format): String = {
-//    val src = Source.fromFile(fileName, encoding).getLines()
-    val src = Source.fromFile(fileName).getLines()
+    val src = Source.fromFile(fileName, encoding).getLines()
+//    val src = Source.fromFile(fileName).getLines()
     var lineNumber = 0
     var s = ""
     for (line <- src) {
