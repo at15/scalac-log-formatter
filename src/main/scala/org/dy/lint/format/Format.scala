@@ -1,6 +1,6 @@
 package org.dy.lint.format
 
-import org.dy.lint.File
+import org.dy.lint.{Project, File}
 import org.dy.lint.warning.Warning
 
 /**
@@ -15,7 +15,7 @@ abstract class Format {
 
   def fileSeparatorEnd(fileName: String): String
 
-  def outputHeader(): String = ""
+  def outputHeader(p:Project): String = ""
 
   def outputFooter(): String = ""
 }
